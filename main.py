@@ -34,7 +34,7 @@ def predictPattern(data):
                         print(markX, markY, data[pos], pattern[pos])            
                     else:
                         continue
-                        #print("attern failed matching A")
+                        #print("pattern failed matching A")
                 elif (data[pos][0] <= pattern[pos][0]) and (data[pos][1] <= pattern[pos][1]):
                     markX = pattern[pos][0]*precision
                     differenceX = pattern[pos][0] - data[pos][0]
@@ -94,8 +94,17 @@ def create_route_to_match(tripLength):
 
 create_route_to_match(10)
 predictPattern(trip)
-    
-plotPath(trip, "TO MATCH")
+def plotInitial(data):   
+    x = []
+    y = []
+    for cordinate in data:
+        x.append(cordinate[0])
+        y.append(cordinate[1])
+    plt.plot(x, y, color="green", linewidth=5, label='ORIGIN PATTERN')
+plotInitial(trip)
 plt.legend()
 print(potentialPaths)
+for potentialPath in potentialPaths:
+    print(potentialPath[-1])
+    plt.plot(potentialPath[-1][0], potentialPath[-1][1], "bo")
 plt.show()
